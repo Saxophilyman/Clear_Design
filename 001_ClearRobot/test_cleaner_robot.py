@@ -86,10 +86,28 @@ def test_full_program_commands_example():
         'POS 100,-50',
         'STOP'
     ]
+# Входная программа управления роботом представляет собой
+# список команд (строки),
+# которые выполняются последовательно одна за одной.
+def test_run_executes_program():
+    robot = RobotController()
 
-    # 'move 100',
-    # 'turn -90',
-    # 'set soap',
-    # 'start',
-    # 'move 50',
-    # 'stop'
+    commands = [
+        'move 100',
+        'turn -90',
+        'set soap',
+        'start',
+        'move 50',
+        'stop'
+    ]
+
+    results = robot.run(commands)
+
+    assert results == [
+        'POS 100,0',
+        'ANGLE -90',
+        'STATE soap',
+        'START WITH soap',
+        'POS 100,-50',
+        'STOP'
+    ]
