@@ -43,11 +43,22 @@ def test_move_after_negative_turn_changes():
     assert result == 'POS 0,-50'
 
 
+def test_set_cleaning_mode():
+    robot = RobotController()
+
+    result = robot.execute('set soap')
+    assert result == 'STATE soap'
+
+
     # -- либо текущую позицию: POS x,y (команда move),
-
-
     # -- либо текущий угол поворота в градусах: ANGLE a (команда turn),
-    # -- либо текущее состояние устройства очистки (одно из трёх): STATE water/soap/brush (команда set),
+
+# Команда set может принимать один из трёх параметров
+# water (полив водой; исходное по умолчанию),
+# soap (мыльная пена),
+# brush (метла).
+    # -- либо текущее состояние устройства очистки (одно из трёх):
+        # STATE water/soap/brush (команда set),
     # -- либо начало работы с текущим состоянием устройства очистки: START WITH water/soap/brush (команда start),
     # -- либо прекращение работы: STOP (команда stop).
 
