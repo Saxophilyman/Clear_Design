@@ -55,6 +55,11 @@ def test_start_with_current_mode():
     result = robot.execute('start')
     assert result == 'START WITH water'
 
+def test_start_uses_selected_cleaning_mode():
+    robot = RobotController()
+    robot.execute('set soap')
+    result = robot.execute('start')
+    assert result == 'START WITH soap'
 
     # -- либо текущую позицию: POS x,y (команда move),
     # -- либо текущий угол поворота в градусах: ANGLE a (команда turn),
