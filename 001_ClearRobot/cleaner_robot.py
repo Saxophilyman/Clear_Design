@@ -5,15 +5,15 @@ class RobotController:
         self.x = 0
         self.y = 0
         self.angle = 0
+        self.cleaning_mode = 'water'
 
     def execute(self, command: str) -> str:
         parts = command.split()
         cmd = parts[0]
-        # value = int(parts[1])
 
         if cmd == 'move':
             value = int(parts[1])
-        # либо оптимизировать по 4м направлениям, либо уйти в математику по градусам
+
             if self.angle == 0:
                 self.x += value
             elif self.angle == 90:
@@ -30,17 +30,24 @@ class RobotController:
             self.angle += value
             return f'ANGLE {self.angle}'
 
+        if cmd == 'set':
+            self.cleaning_mode = parts[1]
+            return f'STATE {self.cleaning_mode}'
+
+
 # как определить иные команды?
 
     # Move (двигаться вперед на заданное число метров),
     # Turn (поворот на месте на заданный угол в градусах),
     # Set (выбрать одно из трёх устройств очистки:
-    #  - полив водой,
-    #  - полив мыльной пеной,
-    #  - чистка метлой),
+    #  [+] полив водой,
+    #  [] полив мыльной пеной,
+    #  [] чистка метлой),
     # Start (включить устройство очистки)
     # Stop (выключить устройство очистки).
 
 
-# - другие команды
+# - другие команды(3 из 5)
 # - направления как все градусы
+# - валидация на команды и значения
+# - углы либо оптимизировать по 4м направлениям, либо уйти в математику по градусам
