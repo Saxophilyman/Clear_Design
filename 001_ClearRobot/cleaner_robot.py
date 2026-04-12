@@ -34,6 +34,8 @@ class RobotController:
             self.cleaning_mode = parts[1]
             return f'STATE {self.cleaning_mode}'
 
+        if cmd == 'start':
+            return f'START WITH {self.cleaning_mode}'
 
 # как определить иные команды?
 

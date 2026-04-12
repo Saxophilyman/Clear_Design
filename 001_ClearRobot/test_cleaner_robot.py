@@ -50,6 +50,12 @@ def test_set_cleaning_mode_brush():
     result = robot.execute('set brush')
     assert result == 'STATE brush'
 
+def test_start_with_current_mode():
+    robot = RobotController()
+    result = robot.execute('start')
+    assert result == 'START WITH water'
+
+
     # -- либо текущую позицию: POS x,y (команда move),
     # -- либо текущий угол поворота в градусах: ANGLE a (команда turn),
     # -- либо текущее состояние устройства очистки (одно из трёх):
