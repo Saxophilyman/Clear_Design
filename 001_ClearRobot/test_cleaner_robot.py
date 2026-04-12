@@ -10,8 +10,14 @@ def test_move_another_from_start():
     robot = RobotController()
 
     result = robot.execute('move 50')
-
     assert result == 'POS 50,0'
+
+def test_move_twice_plus_position():
+    robot = RobotController()
+
+    robot.execute('move 100')
+    result = robot.execute('move 50')
+    assert result == 'POS 150,0'
     # -- либо текущую позицию: POS x,y (команда move),
     # -- либо текущий угол поворота в градусах: ANGLE a (команда turn),
     # -- либо текущее состояние устройства очистки (одно из трёх): STATE water/soap/brush (команда set),
