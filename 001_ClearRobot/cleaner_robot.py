@@ -37,6 +37,8 @@ class RobotController:
         if cmd == 'start':
             return f'START WITH {self.cleaning_mode}'
 
+        if cmd == 'stop':
+            return 'STOP'
 # как определить иные команды?
 
     # Move (двигаться вперед на заданное число метров),

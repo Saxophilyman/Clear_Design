@@ -61,11 +61,14 @@ def test_start_uses_selected_cleaning_mode():
     result = robot.execute('start')
     assert result == 'START WITH soap'
 
+def test_stop():
+    robot = RobotController()
+    result = robot.execute('stop')
+    assert result == 'STOP'
     # -- либо текущую позицию: POS x,y (команда move),
     # -- либо текущий угол поворота в градусах: ANGLE a (команда turn),
     # -- либо текущее состояние устройства очистки (одно из трёх):
         # STATE water(по умолчанию)/soap/brush (команда set),
-
     # -- либо начало работы с текущим состоянием устройства очистки: START WITH water/soap/brush (команда start),
     # -- либо прекращение работы: STOP (команда stop).
 
