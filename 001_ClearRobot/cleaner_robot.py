@@ -44,9 +44,14 @@ class RobotController:
     def run(self, commands: list[str]) -> list[str]:
         results = []
         for command in commands:
-            results.append(self.execute(command))
+            result = self.execute(command)
+            print(result)
+            results.append(result)
 
         return results
+
+
+
 
 # - направления как все градусы
 # - валидация на команды и значения

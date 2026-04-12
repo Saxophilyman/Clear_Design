@@ -68,7 +68,6 @@ def test_stop():
 
 def test_full_program_commands_example():
     robot = RobotController()
-
     results = [
         robot.execute('move 100'),
         robot.execute('turn -90'),
@@ -86,12 +85,9 @@ def test_full_program_commands_example():
         'POS 100,-50',
         'STOP'
     ]
-# Входная программа управления роботом представляет собой
-# список команд (строки),
-# которые выполняются последовательно одна за одной.
+
 def test_run_executes_program():
     robot = RobotController()
-
     commands = [
         'move 100',
         'turn -90',
