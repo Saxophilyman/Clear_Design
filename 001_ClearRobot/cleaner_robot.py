@@ -9,9 +9,10 @@ class RobotController:
     def execute(self, command: str) -> str:
         parts = command.split()
         cmd = parts[0]
-        value = int(parts[1])
+        # value = int(parts[1])
 
         if cmd == 'move':
+            value = int(parts[1])
         # либо оптимизировать по 4м направлениям, либо уйти в математику по градусам
             if self.angle == 0:
                 self.x += value
@@ -25,6 +26,7 @@ class RobotController:
             return f'POS {self.x},{self.y}'
 
         if cmd == 'turn':
+            value = int(parts[1])
             self.angle += value
             return f'ANGLE {self.angle}'
 
