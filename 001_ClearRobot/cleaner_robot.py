@@ -19,6 +19,7 @@ class RobotController:
             self.angle += value
             return f'ANGLE {self.angle}'
 
+# как определить иные команды?
 
     # Move (двигаться вперед на заданное число метров),
     # Turn (поворот на месте на заданный угол в градусах),
