@@ -7,7 +7,10 @@ class RobotController:
 
     def execute(self, command: str) -> str:
         parts = command.split()
-        distance = int(parts[1])
+        cmd = parts[0]
+        value = int(parts[1])
+
+
         self.x += distance
         return f'POS {self.x},{self.y}'
 
