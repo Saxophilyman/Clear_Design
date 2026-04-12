@@ -10,9 +10,13 @@ class RobotController:
         cmd = parts[0]
         value = int(parts[1])
 
+        if cmd == 'move':
+            return ''
 
-        self.x += distance
-        return f'POS {self.x},{self.y}'
+        if cmd == 'turn':
+            return ''
+        # self.x += distance
+        # return f'POS {self.x},{self.y}'
 
     # Move (двигаться вперед на заданное число метров),
     # Turn (поворот на месте на заданный угол в градусах),
