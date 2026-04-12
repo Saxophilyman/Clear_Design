@@ -33,6 +33,16 @@ def test_move_after_turn_changes():
     result = robot.execute('move 50')
 
     assert result == 'POS 0,50'
+
+def test_move_after_negative_turn_changes():
+    robot = RobotController()
+
+    robot.execute('turn -90')
+    result = robot.execute('move 50')
+
+    assert result == 'POS 0,-50'
+
+
     # -- либо текущую позицию: POS x,y (команда move),
 
 

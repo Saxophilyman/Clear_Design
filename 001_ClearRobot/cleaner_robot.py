@@ -12,7 +12,16 @@ class RobotController:
         value = int(parts[1])
 
         if cmd == 'move':
-            self.x += value
+        # либо оптимизировать по 4м направлениям, либо уйти в математику по градусам
+            if self.angle == 0:
+                self.x += value
+            elif self.angle == 90:
+                self.y += value
+            elif self.angle == 180:
+                self.x -= value
+            elif self.angle == -90:
+                self.y -= value
+
             return f'POS {self.x},{self.y}'
 
         if cmd == 'turn':
