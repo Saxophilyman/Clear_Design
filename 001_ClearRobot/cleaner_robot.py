@@ -4,6 +4,7 @@ class RobotController:
     def __init__(self):
         self.x = 0
         self.y = 0
+        self.angle = 0
 
     def execute(self, command: str) -> str:
         parts = command.split()
@@ -11,12 +12,13 @@ class RobotController:
         value = int(parts[1])
 
         if cmd == 'move':
-            return ''
+            self.x += value
+            return f'POS {self.x},{self.y}'
 
         if cmd == 'turn':
-            return ''
-        # self.x += distance
-        # return f'POS {self.x},{self.y}'
+            self.angle += value
+            return f'ANGLE {self.angle}'
+
 
     # Move (двигаться вперед на заданное число метров),
     # Turn (поворот на месте на заданный угол в градусах),
