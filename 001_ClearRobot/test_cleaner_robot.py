@@ -1,5 +1,5 @@
 from cleaner_robot import RobotController
-
+# Move (двигаться вперед на заданное число метров)
 def test_move_from_start():
     robot = RobotController()
 
@@ -18,7 +18,17 @@ def test_move_twice_plus_position():
     robot.execute('move 100')
     result = robot.execute('move 50')
     assert result == 'POS 150,0'
+
+# Turn (поворот на месте на заданный угол в градусах)
+def test_turn_changes_angle():
+    robot = RobotController()
+
+    result = robot.execute('turn -90')
+    assert result == 'ANGLE -90'
+
     # -- либо текущую позицию: POS x,y (команда move),
+
+
     # -- либо текущий угол поворота в градусах: ANGLE a (команда turn),
     # -- либо текущее состояние устройства очистки (одно из трёх): STATE water/soap/brush (команда set),
     # -- либо начало работы с текущим состоянием устройства очистки: START WITH water/soap/brush (команда start),
