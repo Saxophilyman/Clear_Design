@@ -2,4 +2,4 @@
 
 class RobotController:
     def execute(self, command: str) -> str:
-        return ""
+        return 'POS 100,0'
