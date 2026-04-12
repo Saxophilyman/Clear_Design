@@ -65,12 +65,27 @@ def test_stop():
     robot = RobotController()
     result = robot.execute('stop')
     assert result == 'STOP'
-    # -- либо текущую позицию: POS x,y (команда move),
-    # -- либо текущий угол поворота в градусах: ANGLE a (команда turn),
-    # -- либо текущее состояние устройства очистки (одно из трёх):
-        # STATE water(по умолчанию)/soap/brush (команда set),
-    # -- либо начало работы с текущим состоянием устройства очистки: START WITH water/soap/brush (команда start),
-    # -- либо прекращение работы: STOP (команда stop).
+
+def test_full_program_commands_example():
+    robot = RobotController()
+
+    results = [
+        robot.execute('move 100'),
+        robot.execute('turn -90'),
+        robot.execute('set soap'),
+        robot.execute('start'),
+        robot.execute('move 50'),
+        robot.execute('stop')
+    ]
+
+    assert results == [
+        'POS 100,0',
+        'ANGLE -90',
+        'STATE soap',
+        'START WITH soap',
+        'POS 100,-50',
+        'STOP'
+    ]
 
     # 'move 100',
     # 'turn -90',
