@@ -1,7 +1,7 @@
 import pure_robot
 
 class RobotCommand:
-    #
+    # состояние + команда
     def __init__(self, input_state, command):
         self.state = input_state
         self.command = command
@@ -16,11 +16,11 @@ import threading
 
 import pure_robot
 
-
+# очереди для RobotCommand
 input_queue = queue.Queue()
 output_queue = queue.Queue()
 
-
+# воркер и потоки
 class ThreadRobo(threading.Thread):
     def __init__(self, in_queue, out_queue):
         super().__init__()
@@ -75,13 +75,13 @@ class ThreadRobo(threading.Thread):
                     input_state=cleaner_state,
                     command="RESULT"
                 )
-
+                # на выходную очередь
                 self.out_queue.put(result)
 
             finally:
                 self.in_queue.task_done()
 
-
+# выполнение
 def command_to_queue(command):
     input_queue.put(command)
 
@@ -90,9 +90,9 @@ def command_to_queue(command):
 
     return result
 
-
+# количество воркеров
 num_workers = 5
-
+# их запуск
 for _ in range(num_workers):
     worker = ThreadRobo(input_queue, output_queue)
     worker.daemon = True
