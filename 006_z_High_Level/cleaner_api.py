@@ -1,7 +1,7 @@
 import pure_robot
 
 class RobotCommand:
-
+    #
     def __init__(self, input_state, command):
         self.state = input_state
         self.command = command
