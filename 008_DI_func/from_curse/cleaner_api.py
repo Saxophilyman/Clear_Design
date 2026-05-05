@@ -20,13 +20,13 @@ class RobotApi:
         cmd = command.split(' ')
         if cmd[0] == 'move':
             self.cleaner_state = self.f_move(self.f_transfer, int(cmd[1]), self.cleaner_state)
-        if cmd[0] == 'turn':
+        elif cmd[0] == 'turn':
             self.cleaner_state = self.f_turn(self.f_transfer, int(cmd[1]), self.cleaner_state)
-        if cmd[0] == 'set':
+        elif cmd[0] == 'set':
             self.cleaner_state = self.f_set_state(self.f_transfer, int(cmd[1]), self.cleaner_state)
-        if cmd[0] == 'start':
+        elif cmd[0] == 'start':
             self.cleaner_state = self.f_start(self.f_transfer, self.cleaner_state)
-        if cmd[0] == 'stop':
+        elif cmd[0] == 'stop':
             self.cleaner_state = self.f_stop(self.f_transfer, self.cleaner_state)
         return self.cleaner_state
 
