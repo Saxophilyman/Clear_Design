@@ -1,21 +1,3 @@
-Одно из немногих заданий, в котором моё решений приближено к эталону.
-Постарался сохранить линию предыдущих заданий и использовать pure_robot как ядро.
-Также постарался выдержать стиль минимального предоставления клиенту управления в api
-
-В эталоне же насколько понимаю вся работа робота происходит уже внутри команд и они полностью самостоятельны.
-Интересно было увидеть дополнительную логику внутри команды (те же логи).
-Команды становятся некими универсалиями, которые можно расширять при необходимости.
-Также хранение команд более наглядно подводит к возможности undo/redo.
-Вообще при всей похожести, часть в реализации в "исполнителе команд" может оказаться более значимой.
-Все основные требования соблюдены, но вижу, что состояние задаётся извне и возможность самому его настраивать
-видится тоже плюсом.
-Наверное над этим предстоит ещё поразмышлять.
-
-
-Вообще подобный подход мне напомнил работу с CI/CD, Docker, Kubernetes. 
-Ведь в каком-то смысле нам там тоже представлен некий набор "Api команд", которыми мы пользуемся при работе с ними.
-
-```python
 from dataclasses import dataclass
 from typing import Protocol
 
@@ -182,32 +164,3 @@ class CommandHandler:
         new_events = command.decide(current_state)
         self.event_store.append(new_events)
         return new_events
-
-```
-
-```python
-from event_sourcing_robot import *
-
-
-event_store = EventStore()
-command_handler = CommandHandler(event_store)
-
-robot_id = "robot-1"
-
-command_handler.handle(MoveCommand(robot_id, 100))
-command_handler.handle(TurnCommand(robot_id, -90))
-command_handler.handle(SetStateCommand(robot_id, "soap"))
-command_handler.handle(StartCommand(robot_id))
-command_handler.handle(MoveCommand(robot_id, 50))
-command_handler.handle(StopCommand(robot_id))
-
-events = event_store.get_events(robot_id)
-final_state = rebuild_state(events)
-
-print("Events:")
-for event in events:
-    print(event)
-
-print("Final state:")
-print(final_state)
-```
