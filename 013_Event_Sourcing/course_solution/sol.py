@@ -105,7 +105,7 @@ class Command(Protocol):
 
 
 @dataclass
-class MovedCommand:
+class MoveCommand:
     distance: float
 
     def handle(self, current_state: RobotState) -> List[Event]:
