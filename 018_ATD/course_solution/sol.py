@@ -43,8 +43,8 @@ class Robot:
     def _move(transfer: Callable, dist: int, state: _InternalState) -> _InternalState:
         angle_rads = state.angle * (math.pi / 180.0)
         new_state = _InternalState(
-            state.x,
-            state.y,
+            state.x + dist * math.cos(angle_rads),
+            state.y + dist * math.sin(angle_rads),
             state.angle,
             state.state
         )
