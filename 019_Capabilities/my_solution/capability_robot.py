@@ -1,15 +1,3 @@
-
-Пришлось отойти от всего, что мы проходили и посмотреть по новому именно на класс.
-Эталон наглядно показывает разницу между внутренним устройством типа и доступом к самому типу.
-И плюсы расписаны огромным количеством по разным категориям.  
-Новым для меня было явное применение пространства имён для функций, интересный момент с замыканием
-и использованием nonlocal.  
-Да и само состояние теперь не хранится где-то вовне, а присутствует неизменно в АТД,
-без историй и выраженных трансформаций. Насколько понимаю, одна из фишек то что первичное состояние продолжает
-оставаться иммутабельным, и теперь оно не создаётся заново, но меняет ссылку на новое/актуальное состояние,
-которое создаётся в функциях.
-
-```python
 from __future__ import annotations
 import math
 from dataclasses import dataclass
@@ -226,43 +214,3 @@ def _build_capabilities(state: _RobotState, resources: _Resources, log: list[str
     api["status"] = status
 
     return MappingProxyType(api)
-```
-
-```python
-from capability_robot import create_robot
-
-
-robot = create_robot(
-    water=1,
-    soap=1
-)
-
-print(robot.keys())
-
-result, robot = robot["move"](100)
-print(result)
-print(robot.keys())
-
-result, robot = robot["turn"](-90)
-print(result)
-print(robot.keys())
-
-result, robot = robot["set_soap"]()
-print(result)
-print(robot.keys())
-
-result, robot = robot["start"]()
-print(result)
-print(robot.keys())
-
-result, robot = robot["move"](50)
-print(result)
-print(robot.keys())
-
-result, robot = robot["stop"]()
-print(result)
-print(robot.keys())
-
-result, robot = robot["status"]()
-print(result.message)
-```
